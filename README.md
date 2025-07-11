@@ -58,7 +58,7 @@ A RESTful Spring Boot application for project and task management with **role-ba
 
 - `POST /api/auth/authorization` – Register new user
 - `POST /api/auth/refreshToken` – Refresh Token
-- `GET /api/auth/logout` – Login and receive JWT
+- `GET /api/auth/logout` – Logout
 ---
 
 ### 📁 Projects
