@@ -15,7 +15,7 @@ A RESTful Spring Boot application for project and task management with **role-ba
 
 1. **Clone the project**:
    ```bash
-   git clone https://github.com/yourusername/task-tracker-api.git
+   git clone https://github.com/mariamigogoladze02/task-tracker-api.git
    ```
 
 2. **Set DB config** in `application.properties`.
@@ -56,27 +56,26 @@ A RESTful Spring Boot application for project and task management with **role-ba
 
 ### 🔑 Auth
 
-- `POST /api/auth/register` – Register new user
-- `POST /api/auth/login` – Login and receive JWT
-
-### 👤 Users
-
-- `GET /api/users/me` – Get current user info
+- `POST /api/auth/authorization` – Register new user
+- `POST /api/auth/refreshToken` – Refresh Token
+- `GET /api/auth/logout` – Login and receive JWT
+---
 
 ### 📁 Projects
 
-- `GET /api/projects` – List all (ADMIN only)
-- `POST /api/projects` – Create (MANAGER/ADMIN)
-- `PUT /api/projects/{id}` – Update (Owner/ADMIN)
-- `DELETE /api/projects/{id}` – Delete (Owner/ADMIN)
+- `GET /api/project` – List all (ADMIN only)
+- `POST /api/project` – Create (MANAGER/ADMIN)
+- `PUT /api/project` – Update (Owner/ADMIN)
+- `DELETE /api/project/{id}` – Delete (Owner/ADMIN)
 
 ### 📋 Tasks
 
-- `GET /api/tasks` – View all tasks (paginated, filterable)
-- `GET /api/tasks/assigned` – View tasks assigned to current user
-- `POST /api/tasks` – Create (MANAGER/ADMIN)
-- `PUT /api/tasks/{id}` – Update (Assigned user or project owner)
-- `PATCH /api/tasks/{id}/status` – Update status (Assigned user only)
+- `GET /api/task` – View all tasks
+- `POST /api/task` – Create task (MANAGER/ADMIN)
+- `DELETE /api/task/{id}` – Delete task
+- `PUT /api/task` – Update task
+- `PUT /api/task/{id}/status` – Update task status
+- `PUT /api/task//{id}/assign` – Update tasks assigned to current user
 
 ---
 
