@@ -82,7 +82,3 @@ A RESTful Spring Boot application for project and task management with **role-ba
 ## 📬 Postman Collection
 
 - Available in the project in the resources folder. Import it into Postman
-- Includes sample requests for:
-    - Authentication
-    - Project & Task management
-    - Role-based access scenarios
