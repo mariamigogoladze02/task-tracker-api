@@ -1,0 +1,483 @@
+{
+  "info": {
+    "_postman_id": "0759fe05-e9b0-4143-934a-88a5c84c6e5b",
+    "name": "task-tracker-api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "45823964"
+  },
+  "item": [
+    {
+      "name": "projects",
+      "item": [
+        {
+          "name": "createProject",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"task api 2\",\n    \"description\": \"small Jira\",\n    \"ownerId\": \"2\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/project",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "api",
+                "project"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getProjects",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"task api\",\n    \"description\": \"role based\",\n    \"ownerId\": \"2\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/project",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "api",
+                "project"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateProject",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id\": \"1\",\n    \"name\": \"task api 1\",\n    \"description\": \"small Jira Has Been Updated\",\n    \"ownerId\": \"1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/project",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "api",
+                "project"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deleteProject",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/project/1",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "api",
+                "project",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "tasks",
+      "item": [
+        {
+          "name": "getTasks",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/task",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "api",
+                "task"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createTask",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Implement user login\",\n  \"description\": \"Create login endpoint and integrate JWT authentication\",\n  \"priority\": \"HIGH\",\n  \"dueDate\": \"2025-07-15\",\n  \"projectId\": 2,\n  \"assignedUserId\": 2\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/task",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "api",
+                "task"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateTask",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"2\",\n  \"title\": \"API documentation has been changed\",\n  \"description\": \"Document all endpoints using Swagger\",\n  \"priority\": \"MEDIUM\",\n  \"dueDate\": \"2025-07-20\",\n  \"projectId\": 2,\n  \"assignedUserId\": 5\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/task",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "api",
+                "task"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deleteTask",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/task/",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "api",
+                "task",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateTaskStatus",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "assignTask",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "if(pm.response.code == 200){",
+              "    pm.collectionVariables.set(\"ACCESS_TOKEN\", pm.response.json().accessToken);",
+              "    pm.collectionVariables.set(\"REFRESH_TOCKEN\", pm.response.json().refreshToken);",
+              "}",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "*/*"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"manager@mail.com\",\n  \"password\": \"test\"\n}"
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/api/auth/authorization",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "authorization"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "createUser",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "*/*"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"email\": \"test1@mail.com\",\n    \"password\": \"test\",\n    \"role\": \"USER\"\n}"
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/api/user",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "api",
+            "user"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "logout",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "   pm.collectionVariables.set(\"ACCESS_TOKEN\", null);",
+              "    pm.collectionVariables.set(\"REFRESH_TOCKEN\", null);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "accept",
+            "value": "*/*"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/api/auth/logout",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "logout"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "refreshToken",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "*/*"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"refreshToken\":\"2f83cdc8-7f1c-4397-81df-e13769c4caf7\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/api/auth/refreshToken",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "refreshToken"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "const token = pm.collectionVariables.get(\"ACCESS_TOKEN\");",
+          "const authPath = \"/rest/api/auth/authorization\";",
+          "const requestUrl = pm.request.url.toString();",
+          "",
+          "if (!requestUrl.includes(authPath)) { ",
+          "    if (token) {",
+          "        pm.request.headers.upsert({",
+          "            key: \"Authorization\",",
+          "            value: `Bearer ${token}`",
+          "        });",
+          "    } else {",
+          "        console.warn(\"⚠️ No Token Found! Run the login request first.\");",
+          "    }",
+          "} else {",
+          "    console.log(\"🔒 Skipping Authorization Header for Auth API\");",
+          "}",
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "BASE_URL",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "ACCESS_TOKEN",
+      "value": "",
+      "disabled": true
+    },
+    {
+      "key": "REFRESH_TOCKEN",
+      "value": "",
+      "disabled": true
+    },
+    {
+      "key": "ACCESS_TOKEN",
+      "value": ""
+    },
+    {
+      "key": "REFRESH_TOCKEN",
+      "value": ""
+    }
+  ]
+}
