@@ -222,20 +222,39 @@ class TaskServiceImplTest {
 
     @Test
     void updateTaskStatus_success() {
+        Long userId = 1L;
+        Long projectId = 10L;
+
+        UserDetailsImpl userDetails = mock(UserDetailsImpl.class);
+        when(userDetails.getId()).thenReturn(userId);
+
+        User owner = new User();
+        owner.setId(userId);
+
+        Project project = new Project();
+        project.setId(projectId);
+        project.setOwner(owner);
+
         Task task = new Task();
+        task.setId(100L);
+        task.setProject(project);
+
         Task saved = new Task();
+        saved.setStatus(TaskStatus.IN_PROGRESS);
         TaskDto taskDto = new TaskDto();
 
-        when(taskRepository.findById(1L)).thenReturn(Optional.of(task));
+        when(authService.getUser()).thenReturn(userDetails);
+        when(taskRepository.findById(100L)).thenReturn(Optional.of(task));
         when(taskRepository.save(task)).thenReturn(saved);
         when(taskMapper.mapToDto(saved)).thenReturn(taskDto);
 
-        TaskDto result = taskService.updateTaskStatus(1L, TaskStatus.IN_PROGRESS);
+        TaskDto result = taskService.updateTaskStatus(100L, TaskStatus.IN_PROGRESS);
 
         assertNotNull(result);
         verify(taskRepository).save(task);
-        assertEquals(TaskStatus.IN_PROGRESS, task.getStatus());
+        assertEquals(TaskStatus.IN_PROGRESS, saved.getStatus());
     }
+
 
     @Test
     void updateTaskStatus_notFound_throws() {

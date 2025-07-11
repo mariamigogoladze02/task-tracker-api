@@ -103,7 +103,14 @@ public class TaskServiceImpl implements TaskService {
     @Transactional
     @Override
     public TaskDto updateTaskStatus(Long id, TaskStatus status) {
+        UserDetailsImpl currentUser = authService.getUser();
+
         Task task = taskRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.NOT_FOUND));
+
+        User projectOwner = task.getProject().getOwner();
+        if (!Objects.equals(currentUser.getId(), projectOwner.getId())) {
+            throw new AppException(ErrorCode.FORBIDDEN);
+        }
 
         task.setStatus(status);
         return taskMapper.mapToDto(taskRepository.save(task));

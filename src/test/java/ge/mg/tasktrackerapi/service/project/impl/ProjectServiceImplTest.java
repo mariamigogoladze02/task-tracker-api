@@ -181,9 +181,22 @@ class ProjectServiceImplTest {
     @Test
     void deleteProject_success() {
         Long projectId = 1L;
+        Long userId = 42L;
+
+        UserDetailsImpl mockUser = mock(UserDetailsImpl.class);
+        when(mockUser.getId()).thenReturn(userId);
+
+        User owner = new User();
+        owner.setId(userId);
+
+        Project project = new Project();
+        project.setId(projectId);
+        project.setOwner(owner);
+
+        when(authService.getUser()).thenReturn(mockUser);
+        when(projectRepository.findById(projectId)).thenReturn(Optional.of(project));
 
         projectService.deleteProject(projectId);
-
-        verify(projectRepository).deleteById(projectId);
+        verify(projectRepository).delete(project);
     }
 }
