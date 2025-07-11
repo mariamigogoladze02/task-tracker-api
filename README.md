@@ -34,17 +34,12 @@ A RESTful Spring Boot application for project and task management with **role-ba
 
 ## 👥 Roles & Permissions
 
-| Role   | Project Access      | Task Access  |
+| Role    | Project Access           | Task Access                          |
+|---------|--------------------------|--------------------------------------|
+| ADMIN   | Full CRUD on all         | Full CRUD on all tasks               |
+| MANAGER | CRUD on own projects     | Assign/update tasks in own projects |
+| USER    | None                     | View/update their own tasks         |
 
-|--------|---------------------|--------------|
-
-| ADMIN  | Full CRUD on all    | Full CRUD on all tasks  |
-
-| MANAGER| CRUD on own projects| Assign/update tasks in own projects |
-
-| USER   | None                | View/update their own tasks     |
-
----
 
 ## 🔐 Authentication (JWT-based)
 
