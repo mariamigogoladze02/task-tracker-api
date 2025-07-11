@@ -63,7 +63,7 @@ A RESTful Spring Boot application for project and task management with **role-ba
 
 ### 📁 Projects
 
-- `GET /api/project` – List all (ADMIN only)
+- `GET /api/project` – List all (MANAGER/ADMIN)
 - `POST /api/project` – Create (MANAGER/ADMIN)
 - `PUT /api/project` – Update (Owner/ADMIN)
 - `DELETE /api/project/{id}` – Delete (Owner/ADMIN)
