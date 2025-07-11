@@ -81,6 +81,14 @@ public class ProjectServiceImpl implements ProjectService {
     @Transactional
     @Override
     public void deleteProject(Long id) {
-        projectRepository.deleteById(id);
+        UserDetailsImpl currentUser = authService.getUser();
+
+        Project project = projectRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.NOT_FOUND));
+
+        if (!Objects.equals(project.getOwner().getId(), currentUser.getId())) {
+            throw new AppException(ErrorCode.FORBIDDEN);
+        }
+
+        projectRepository.delete(project);
     }
 }
